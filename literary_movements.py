@@ -138,6 +138,25 @@ plt.figure(figsize=(18, 16))
 sns.heatmap(data=sM_All,annot=False,linewidths=0.1, cmap="YlGnBu")
 plt.show()
 
+#This code is to find most similar quote from a given author:
+l_all = list_all_rom + list_all_rea + list_all_sur
+
+#merge all names and repeat names as many times as quotes per author:
+names_mult = []
+for i in l_all:
+    names_mult = names_mult + [eval(i)[0]] * int(len(eval(i))-1)
+
+#Find most similar quote from author function:
+
+def find_closest(sM,merged_list,names_m,author):
+    close = np.argsort(sM[author,:])[len(sM)-2]
+    return names_mult[author], merged_list[author], names_m[close], merged_list[close] 
+
+#Test the function. Last input is the author you wish to test as given in names_mult:
+#Here 0-7 is Poe for example.
+find_closest(sM_All,merged_list_all,names_mult,0)
+
+
 #to render graph:
 #Import array to netowrkx object with a given threshold:
 G = nx.from_numpy_array(sM_All>0.25)
