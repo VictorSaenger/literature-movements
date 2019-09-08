@@ -152,8 +152,9 @@ def find_closest(sM,merged_list,names_m,author):
     close = np.argsort(sM[author,:])[len(sM)-2]
     return names_mult[author], merged_list[author], names_m[close], merged_list[close] 
 
-#Test the function. Last input is the author you wish to test as given in names_mult:
-#Here 0-7 is Poe for example.
+#Here as an example, 0 is a quote from Poe, so with this
+#function we are searching for its most similar quote from any other author. 
+#You can do this for all other quotes! Change 0 to any other number and have fun!
 find_closest(sM_All,merged_list_all,names_mult,0)
 
 
